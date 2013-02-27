@@ -3,6 +3,17 @@ SecondMarket Chef Style Guide
 
 This project contains the Chef Style Guide we use at SecondMarket. Some of these rules are enforced by FoodCritic; some others are not.
 
+Cookbook Naming
+===============
+
+* Avoid punctuation ('_' or '-') in cookbook names. This is because any LWRPs you create will use the cookbook name as part of the LWRP name, so the method become very awkward. In particular, since '-' can't be part of a symbol in Ruby, you won't be able to use LWRPs in any cookbooks with '-' in them.
+* All SecondMarket application cookbook should be prefixed with 'sm' (e.g. 'smpostgresql')
+
+Cookbook Versioning
+===================
+
+Use [semantic versioning](http://semver.org/) when numbering cookbooks. We also follow the same convention as Opscode, where the middle digit of a cookbook version is odd if unstable, even if stable.
+
 System and Component Naming
 ===========================
 
