@@ -7,7 +7,7 @@ Cookbook Naming
 ---------------
 
 * Avoid punctuation ('_' or '-') in cookbook names. This is because any LWRPs you create will use the cookbook name as part of the LWRP name, so the method become very awkward. In particular, since '-' can't be part of a symbol in Ruby, you won't be able to use LWRPs in any cookbooks with '-' in them.
-* All SecondMarket application cookbook should be prefixed with 'sm' (e.g. 'smpostgresql')
+* All SecondMarket application cookbooks should be prefixed with 'sm' (e.g. 'smpostgresql')
 
 Cookbook Versioning
 -------------------
