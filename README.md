@@ -4,18 +4,21 @@ SecondMarket Chef Style Guide
 This project contains the Chef Style Guide we use at SecondMarket. Some of these rules are enforced by FoodCritic; some others are not.
 
 Cookbook Naming
-===============
+---------------
 
 * Avoid punctuation ('_' or '-') in cookbook names. This is because any LWRPs you create will use the cookbook name as part of the LWRP name, so the method become very awkward. In particular, since '-' can't be part of a symbol in Ruby, you won't be able to use LWRPs in any cookbooks with '-' in them.
 * All SecondMarket application cookbook should be prefixed with 'sm' (e.g. 'smpostgresql')
 
 Cookbook Versioning
-===================
+-------------------
 
-Use [semantic versioning](http://semver.org/) when numbering cookbooks. We also follow the same convention as Opscode, where the middle digit of a cookbook version is odd if unstable, even if stable.
+* Use [semantic versioning](http://semver.org/) when numbering cookbooks. We also follow the same convention as Opscode, where the middle digit of a cookbook version is an odd number if unstable and even number if stable.
+* Only upload stable cookbooks from master.
+* Only upload unstable cookbooks from the dev branch. Merge to master and bump the version when stable.
+* Always update CHANGELOG.md with any changes, with the JIRA ticket and a brief description.
 
 System and Component Naming
-===========================
+---------------------------
 
 Name things uniformly for their system and component. For the ganglia master,
 
@@ -29,12 +32,12 @@ Name things uniformly for their system and component. For the ganglia master,
 Name attributes after the recipe in which they are primarily used. e.g. `node['postgresql']['server']`
 
 Default Recipe
-==============
+--------------
 
 Don't use the default recipe (leave it blank). Instead, create recipes called `server` or `client` (or other).
 
 Resource Parameter Order
-========================
+------------------------
 
 Follow this order for information in each resource declaration:
 
@@ -60,7 +63,7 @@ Example:
     end
 
 File Modes
-==========
+----------
 
 Always specify all five digits of the file mode, and not as a string.
 
@@ -73,7 +76,7 @@ Right:
     mode 00644
 
 Always Specify Action
-=====================
+---------------------
 
 In each resource declarations always specify the action to be taken:
 
@@ -88,7 +91,7 @@ Right:
     end
 
 FoodCritic Linting
-==================
+------------------
 
 It goes without saying that all cookbooks should pass FoodCritic rules before being uploaded.
 
@@ -97,7 +100,7 @@ It goes without saying that all cookbooks should pass FoodCritic rules before be
 should return nothing.
 
 Symbols or Strings?
-===================
+-------------------
 
 Even though the controversial FC001 Foodcritic rule has now been removed, we still prefer strings over symbols. Please retrofit old cookbooks as you come across them.
 
@@ -110,24 +113,24 @@ Right:
     default['foo']['bar'] = 'baz'
 
 Constructs to Avoid
-===================
+-------------------
 
 * `node.set_unless` - Can lead to weird behavior if the node object had something set. Avoid unless altogether necessary (one example where it's necessary is in `node['postgresql']['server']['password']`)
 * `if node.run_list.include?("foo")` i.e. branching in recipes based on what's in the node's run list. Better and more readable to use a feature flag and set its precedence appropriately.
 * `node['foo']['bar']` i.e. setting normal attributes without specifying precedence. This is deprecated in Chef 11, so either use `node.set['foo']['bar']` to replace its precedence in-place or choose the precedence to suit.
 
 Useful Links
-============
+------------
 
 * [Ironfan Style Guide](https://github.com/infochimps-labs/ironfan/wiki/style_guide)
 * [FoodCritic](http://acrmp.github.com/foodcritic/)
 
 License and Authors
-===================
+-------------------
 
 * Author:: Julian Dunn (<jdunn@secondmarket.com>)
 
-* Copyright:: 2013, SecondMarket Labs, LLC.
+* Copyright:: 2012-2013, SecondMarket Labs, LLC.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
