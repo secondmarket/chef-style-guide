@@ -92,11 +92,11 @@ Even though the controversial FC001 Foodcritic rule has now been removed, we sti
 
 Wrong:
 
-default[:foo][:bar] = 'baz'
+    default[:foo][:bar] = 'baz'
 
 Right:
 
-default['foo']['bar'] = 'baz'
+    default['foo']['bar'] = 'baz'
 
 Constructs to Avoid
 ===================
