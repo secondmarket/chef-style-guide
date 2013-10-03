@@ -24,7 +24,7 @@ Name things uniformly for their system and component. For the ganglia master,
 
 * attributes: `node['ganglia']['master']`
 * recipe: `ganglia::master`
-* role: `ganglia-master`
+* role: `ganglia_master` - **Note**: use of '-' in role names should be **avoided** use '_' instead
 * directories: `ganglia/master` (if specific to component), `ganglia` (if not). For example: `/var/log/ganglia/master`
 
 (The foregoing was shamelessly cribbed from Ironfan)
